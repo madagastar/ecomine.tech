@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Ecomine 矿业经济研究</title>
+    <meta name='description' content='矿业研究相关信息聚合站，欢迎访问！'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #e0f7fa; /* 新背景色 */
+            display: flex;
+            margin: 0;
+            height: 100vh;
+            overflow: hidden; /* 隐藏滚动条 */
+            line-height: 1.6; /* 增加行高 */
+        }
+        .sidebar {
+            width: 220px; /* 边栏宽度 */            
+            background-color: #004d40; /* 深色边栏背景 */
+            color: #ecf0f1; /* 浅色文字 */
+            padding: 20px; /* 内边距 */
+            padding-top: 60px; /* 增加顶部内边距，避免与按钮重叠 */
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2); /* 阴影效果 */
+            position: fixed; /* 固定位置 */
+            left: 0;
+            top: 0;
+            height: 100%; /* 充满整个高度 */
+            overflow-y: auto; /* 允许边栏滚动 */
+            transition: transform 0.3s, opacity 0.3s; /* 平滑过渡 */
+            opacity: 1; /* 初始透明度 */
+        }
+        .sidebar.hidden {
+            transform: translateX(-100%); /* 隐藏状态 */
+            opacity: 0; /* 隐藏时透明度为0 */
+        }
+        .content {
+            flex: 1; /* 自适应宽度 */
+            padding: 20px; /* 内边距 */
+            margin-left: 220px; /* 初始左边距 */            
+            display: flex;
+            flex-direction: column; /* 纵向排列内容 */
+            align-items: center; /* 水平居中 */
+            justify-content: flex-start; /* 顶部对齐 */
+            height: 100%; /* 充满整个高度 */
+            position: relative; /* 相对定位 */
+        }
+        .toggle-button {
+            position: absolute;
+            top: 10px;
+            left: 10px; /* 更靠左的位置 */
+            background-color: #00796b; /* 按钮背景色 */
+            color: white; /* 按钮文字颜色 */
+            border: none;
+            padding: 10px 15px; /* 增加内边距 */
+            cursor: pointer;
+            border-radius: 5px; /* 圆角 */
+            z-index: 1000; /* 确保按钮在最上层 */
+            transition: background-color 0.3s; /* 背景色过渡 */
+            font-size: 1em; /* 增加字体大小 */
+        }
+        .toggle-button:hover {
+            background-color: #004d40; /* 悬停时的颜色 */
+        }
+        img {
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #ffffff; /* 添加边框 */
+            border-radius: 10px; /* 圆角 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+        }
+        a {
+            display: block;
+            margin-top: 15px;
+            color: #ffffff; /* 浅色链接 */
+            text-decoration: none; /* 去掉下划线 */
+            transition: color 0.3s; /* 颜色过渡 */
+        }
+        a:hover {
+            color: #ffab40; /* 悬停时的颜色 */
+        }
+        .stats-container {
+            background-color: #ffffff; /* 白色背景 */
+            padding: 15px; /* 增加内边距 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: auto; /* 将其推到底部 */
+            max-width: 300px; /* 设置最大宽度 */
+            margin-left: auto; /* 居中 */
+            margin-right: auto; /* 居中 */
+            position: absolute; /* 绝对定位 */
+            bottom: 20px; /* 距离底部20px */
+        }
+        .stats-title {
+            font-size: 1.8em; /* 增大标题字体 */
+            margin-bottom: 10px;
+            color: #00796b; /* 深色标题 */
+        }
+        .stats-item {
+            font-size: 1.2em;
+            margin: 5px 0;
+            color: #ff5722; /* 深灰色文字 */
+        }
+        .stats-item span {
+            font-weight: 700;
+            color: #2980b9; /* 强调的颜色 */
+        }
+        .icon {
+            margin-right: 5px;
+            color: #2980b9; /* 图标颜色 */
+        }
+        .header {
+            text-align: center; /* 居中对齐 */
+            margin-bottom: 20px; /* 底部间距 */
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px; /* 较小屏幕的边栏宽度 */
+            }
+            .content {
+                margin-left: 200px; /* 较小屏幕的内容左边距 */
+            }
+        }
+    </style>
+
+    <script defer src="https://cn.vercount.one/js"></script>
+
+</head>
+<body>
+    <button class="toggle-button">相关链接</button>
+    
+    <div class="sidebar" id="sidebar">
+        <p></p>
+        <p></p>
+        <p><a href="https://nav.ecomine.tech">NAV 技术经济导航站</a></p>
+        <p><a href="https://blog.ecomine.tech">矿业经济研究博客</a></p>
+        <p><a href="https://enfi.comine.tech">网盘</a></p>
+        <p><a href="https://go.ecomine.tech">短链接转换</a></p>
+        <p><a href="https://chat.ecomine.tech">AI聊天</a></p>
+    </div>
+    
+    <div class="content" id="content">
+        <h1 class="header">Ecomine 矿业经济研究</h1>
+        <div id="imageContainer" class="image-container">
+            <a href="https://blog.ecomine.tech">
+                <img src="https://blog.ecomine.tech/wp-content/uploads/2024/01/IMG_0117.webp" alt="矿业经济研究"  id="image">
+            </a>
+        </div>
+
+        <div class="stats-container">
+            <div class="stats-title">网站访问统计</div>
+            <div class="stats-item">
+                <i class="fas fa-eye icon"></i>本站总访问量 <span id="busuanzi_value_site_pv"></span> 次
+            </div>
+            <div class="stats-item">
+                <i class="fas fa-user icon"></i>本站总访客数 <span id="busuanzi_value_site_uv"></span> 人
+            </div>
+            <p>感谢您的访问</p>
+        </div>
+    </div>
+
+    <script>
+        const toggleButton = document.querySelector('.toggle-button');
+        const sidebar = document.getElementById('sidebar');
+        const content = document.getElementById('content');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('hidden'); // 切换边栏可见性
+            content.classList.toggle('shifted'); // 切换内容区位置
+        });
+    </script>
+</body>
+</html>
