@@ -45,6 +45,8 @@
             justify-content: flex-start; /* 顶部对齐 */
             height: 100%; /* 充满整个高度 */
             position: relative; /* 相对定位 */
+            overflow-y: auto; /* 允许内容区滚动 */
+            padding-bottom: 100px; /* 增加底部内边距，确保统计容器有空间 */
         }
         .toggle-button {
             position: absolute;
@@ -64,14 +66,14 @@
             background-color: #004d40; /* 悬停时的颜色 */
         }
         img {
-          display: block;
-          margin: 20px auto;
-          max-width: 100%;
-          height: auto;
-          border: 5px solid #ffffff;
-          border-radius: 10px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-          margin-bottom: 40px; /* 增加图片底部的间距 */
+            display: block;
+            margin: 20px auto;
+            max-width: 100%;
+            height: auto;
+            border: 5px solid #ffffff; /* 添加边框 */
+            border-radius: 10px; /* 圆角 */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* 添加阴影 */
+            margin-bottom: 40px; /* 增加图片底部的间距 */
         }
         a {
             display: block;
@@ -84,17 +86,16 @@
             color: #ffab40; /* 悬停时的颜色 */
         }
         .stats-container {
-          background-color: #ffffff;
-          padding: 15px;
-          border-radius: 10px;
-          box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-          text-align: center;
-          margin-top: 40px;
-          max-width: 300px;
-          margin-left: auto;
-          margin-right: auto;
-          position: relative;
-          top: 20px; /* 增加统计容器顶部的间距 */
+            background-color: #ffffff; /* 白色背景 */
+            padding: 15px; /* 增加内边距 */
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            margin-top: 40px; /* 增加顶部间距 */
+            max-width: 300px; /* 设置最大宽度 */
+            margin-left: auto; /* 居中 */
+            margin-right: auto; /* 居中 */
+            flex-shrink: 0; /* 防止统计容器缩小 */
         }
         .stats-title {
             font-size: 1.8em; /* 增大标题字体 */
@@ -150,7 +151,7 @@
         <h1 class="header">Ecomine 矿业经济研究</h1>
         <div id="imageContainer" class="image-container">
             <a href="https://blog.ecomine.tech">
-                <img src="https://blog.ecomine.tech/wp-content/uploads/2024/01/IMG_0117.webp" alt="矿业经济研究" id="image">
+                <img src="https://blog.ecomine.tech/wp-content/uploads/2024/01/IMG_0117.webp" alt="矿业经济研究" width=840 id="image">
             </a>
         </div>
 
